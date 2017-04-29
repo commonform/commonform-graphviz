@@ -2,7 +2,7 @@ var assert = require('assert')
 var graphviz = require('./')
 
 assert.equal(
-  graphviz({
+  graphviz.terms({
     content: [
       {
         form: {
@@ -73,6 +73,50 @@ assert.equal(
     '"Other IP" -> "Patents";',
     '"Other IP" -> "Trade Secrets";',
     '"Other IP" -> "Trademarks";',
+    '}'
+  ].join('\n')
+)
+
+assert.equal(
+  graphviz.headings({
+    content: [
+      {
+        heading: 'Preamble',
+        form: {content: ['This is the preamble.']}
+      },
+      {
+        heading: 'Dates',
+        form: {
+          content: [
+            'The effective date is in ', {reference: 'Preamble'}, '.'
+          ]
+        }
+      },
+      {
+        heading: 'Obligations',
+        form: {
+          content: ['Onerous. Described at length.']
+        }
+      },
+      {
+        heading: 'Enforcement',
+        form: {
+          content: [
+            'Only the parties named in ',
+            {reference: 'Preamble'},
+            ' may enforce the obligations in ',
+            {reference: 'Obligations'},
+            '.'
+          ]
+        }
+      }
+    ]
+  }),
+  [
+    'digraph {',
+    '"Dates" -> "Preamble";',
+    '"Enforcement" -> "Obligations";',
+    '"Enforcement" -> "Preamble";',
     '}'
   ].join('\n')
 )

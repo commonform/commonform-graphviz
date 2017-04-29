@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+var buffer = []
+process.stdin
+  .on('data', function (chunk) {
+    buffer.push(chunk)
+  })
+  .once('end', function () {
+    var input = Buffer.concat(buffer)
+    var parsed = JSON.parse(input)
+    process.stdout.write(require('./terms.js')(parsed) + '\n')
+  })
