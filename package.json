@@ -1,15 +1,14 @@
 {
   "name": "commonform-graphviz",
   "description": "generate GraphViz diagrams from Common Forms",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "Kyle E. Mitchell <kyle@kemitchell.com> (https://kemitchell.com/)",
-  "repository": "commonform/commonform-graphviz",
+  "repository": "kemitchell/commonform-graphviz.js",
   "bin": {
     "commonform-graphviz-headings": "headings",
     "commonform-graphviz-terms": "terms"
   },
   "license": "Apache-2.0",
-  "repository": "kemitchell/commonform-graphviz.js",
   "scripts": {
     "test": "node test.js"
   }
