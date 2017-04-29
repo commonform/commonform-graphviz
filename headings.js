@@ -6,14 +6,19 @@ function analysisOf (form) {
   var analysis = {}
   function recurse (form, underHeadings) {
     form.content.forEach(function (element) {
-      if (element.reference) {
+      if (element.reference && underHeadings.length !== 0) {
         var under = underHeadings[underHeadings.length - 1]
         if (!analysis.hasOwnProperty(under)) {
           analysis[under] = []
         }
         add(analysis[under], element.reference)
       } else if (element.form) {
-        recurse(element.form, underHeadings.concat(element.heading))
+        recurse(
+          element.form,
+          element.hasOwnProperty('heading')
+            ? underHeadings.concat(element.heading)
+            : underHeadings
+        )
       }
     })
   }
@@ -49,4 +54,3 @@ function format (analysis) {
     '}'
   ].join('\n')
 }
-
